@@ -5,6 +5,7 @@ import { setSort } from "../redux/slices/filterSlice";
 function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
+  const sortRef = React.useRef();
 
   const [open, setOpen] = React.useState(false);
 
@@ -32,8 +33,24 @@ function Sort() {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      // закрытие popup окна при клике на body
+      if (!event.composedPath().includes(sortRef.current)) {
+        setOpen(false);
+        console.log("click");
+      }
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -58,7 +75,7 @@ function Sort() {
                 key={i}
                 onClick={() => onClickListItem(obj)}
                 className={
-                 sort.sortProperty === obj.sortProperty ? "active" : ""
+                  sort.name === obj.name ? "active" : ""
                 }
               >
                 {obj.name}

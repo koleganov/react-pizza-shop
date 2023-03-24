@@ -9,7 +9,7 @@ const Search = () => {
   const { setSearchValue } = React.useContext(SearchContext);
   const inputRef = React.useRef();
 
-  const uodateSearchValue = React.useCallback(
+  const updateSearchValue = React.useCallback(
     debounce((str) => {
       setSearchValue(str);
     }, 500),
@@ -18,7 +18,7 @@ const Search = () => {
 
   const onChangeInput = (event) => {
     setValue(event.target.value);
-    uodateSearchValue(event.target.value);
+    updateSearchValue(event.target.value);
   };
 
   const onClickClear = () => {
