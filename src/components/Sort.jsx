@@ -2,31 +2,31 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../redux/slices/filterSlice";
 
+export const sortList = [
+  {
+    id: 0,
+    name: "популярности ↓",
+    sortProperty: "rating",
+    order: "desc",
+  },
+  {
+    id: 1,
+    name: "популярности ↑",
+    sortProperty: "rating",
+    order: "asc",
+  },
+  { id: 2, name: "цене ↓", sortProperty: "price", order: "desc" },
+  { id: 3, name: "цене ↑", sortProperty: "price", order: "asc" },
+  { id: 4, name: "алфавиту ↓", sortProperty: "title", order: "desc" },
+  { id: 5, name: "алфавиту ↑", sortProperty: "title", order: "asc" },
+];
+
 function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
   const sortRef = React.useRef();
 
   const [open, setOpen] = React.useState(false);
-
-  const list = [
-    {
-      id: 0,
-      name: "популярности ↓",
-      sortProperty: "rating",
-      order: "desc",
-    },
-    {
-      id: 1,
-      name: "популярности ↑",
-      sortProperty: "rating",
-      order: "asc",
-    },
-    { id: 2, name: "цене ↓", sortProperty: "price", order: "desc" },
-    { id: 3, name: "цене ↑", sortProperty: "price", order: "asc" },
-    { id: 4, name: "алфавиту ↓", sortProperty: "title", order: "desc" },
-    { id: 5, name: "алфавиту ↑", sortProperty: "title", order: "asc" },
-  ];
 
   const onClickListItem = (obj) => {
     dispatch(setSort(obj));
@@ -70,7 +70,7 @@ function Sort() {
       {open && (
         <div className="sort__popup">
           <ul>
-            {list.map((obj, i) => (
+            {sortList.map((obj, i) => (
               <li
                 key={i}
                 onClick={() => onClickListItem(obj)}
