@@ -25,11 +25,9 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
   const { items, status } = useSelector((state) => state.pizza);
-  const { categoryId, sort, currentPage } = useSelector(
+  const { categoryId, sort, currentPage, searchValue } = useSelector(
     (state) => state.filter
   );
-
-  const { searchValue } = React.useContext(SearchContext);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -116,7 +114,10 @@ const Home = () => {
       {status === "error" ? (
         <div className="content__error-info">
           <h2>Произошла ошибка</h2>
-          <p>К сожалению, не удалось получить пиццы. Попробуйте повторить попытку позже.</p>
+          <p>
+            К сожалению, не удалось получить пиццы. Попробуйте повторить попытку
+            позже.
+          </p>
         </div>
       ) : (
         <div className="content__items">
