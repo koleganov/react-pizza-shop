@@ -2,7 +2,7 @@ import React from "react";
 
 type CategoriesProps = {
   value: number;
-  onChangeCategory: any;
+  onChangeCategory: (i: number) => void; // void значит что функция ничего не возращает (return)
 };
 
 const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {

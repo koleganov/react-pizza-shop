@@ -107,7 +107,7 @@ const Home: React.FC = () => {
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort value={sort} />
+        <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === "error" ? (
